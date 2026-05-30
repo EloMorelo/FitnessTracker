@@ -2,10 +2,7 @@ package pl.wsb.fitnesstracker.user.internal;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import pl.wsb.fitnesstracker.user.api.User;
-import pl.wsb.fitnesstracker.user.api.UserDto;
-import pl.wsb.fitnesstracker.user.api.UserProvider;
-import pl.wsb.fitnesstracker.user.api.UserService;
+import pl.wsb.fitnesstracker.user.api.*;
 
 import java.util.List;
 
@@ -23,6 +20,7 @@ class UserController {
     private final UserProvider userProvider;
 
     private final UserMapper userMapper;
+    private final UserSimpleMapper userSimpleMapper;
 
     @PostMapping
     public UserDto addUser(@RequestBody UserDto userDto) throws InterruptedException {
@@ -38,6 +36,14 @@ class UserController {
 
        return this.userProvider.findAllUsers().stream()
                 .map(this.userMapper::toUserDto)
+                .toList();
+    }
+
+    @GetMapping
+    public List<UserSimpleDto> getSimpleUsers(){
+
+        return this.userProvider.findAllUsers().stream()
+                .map(this.userSimpleMapper::toUserSimpleDto)
                 .toList();
     }
 
