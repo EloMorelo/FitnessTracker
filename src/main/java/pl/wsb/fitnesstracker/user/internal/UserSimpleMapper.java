@@ -6,8 +6,8 @@ import pl.wsb.fitnesstracker.user.api.User;
 import pl.wsb.fitnesstracker.user.api.UserSimpleDto;
 
 @Component
-class toSimpleUser {
-    UserSimpleDto toUserDto(User user) {
+class UserSimpleMapper {
+    UserSimpleDto toUserSimpleDto(User user) {
         return new UserSimpleDto(user.getId(), user.getFirstName(), user.getLastName());
     }
 }

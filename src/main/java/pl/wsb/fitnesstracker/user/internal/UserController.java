@@ -39,13 +39,12 @@ class UserController {
                 .toList();
     }
 
-    @GetMapping
+    @GetMapping("/simple")
     public List<UserSimpleDto> getSimpleUsers(){
 
         return this.userProvider.findAllUsers().stream()
                 .map(this.userSimpleMapper::toUserSimpleDto)
                 .toList();
     }
-
 
 }
